@@ -54,10 +54,10 @@ while len(removeFromOthers) < len(ticketNames):
         elif len(ticketNames[pos]) > 1:
             ticketNames[pos] = ticketNames[pos].difference(removeFromOthers)
 
+print(ticketNames)
 multSum = 1
 for pos in range(0, len(ticketNames)):
     if ticketNames[pos].pop().startswith('departure'):
         multSum = myTicket[pos] * multSum
-print(ticketNames)
 print(myTicket)
 print(multSum)
