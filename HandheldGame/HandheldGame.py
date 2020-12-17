@@ -29,7 +29,7 @@ for i in range(0, len(program)):
         elif key == 'jmp':
             pc += int(val)
     if pc >= len(program):
-        print(acc)
+        print(acc, i)
         break
     pc = 0
     acc = 0
