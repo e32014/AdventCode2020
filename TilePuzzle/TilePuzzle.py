@@ -14,8 +14,8 @@ def checkMonsters(img, monster):
     validPos = set()
     valid = 0
     isValid = True
-    for y in range(0, img.shape[0]):
-        for x in range(0, img.shape[1]):
+    for y in range(img.shape[0] - 3):
+        for x in range(0, img.shape[0] - 20):
             for offY in range(0, len(monster)):
                 if y + offY >= img.shape[0]:
                     isValid = False
@@ -32,6 +32,7 @@ def checkMonsters(img, monster):
                 if not isValid:
                     break
             if isValid:
+                print(x, y)
                 valid += 1
                 for posy, posx in validPos:
                     img[posy, posx] = 'M'
@@ -274,7 +275,7 @@ while queue:
                     elif dirToPrevious[0] == 2:
                         print("rotate 90")
                         tiles[consider] = rotateClockwise(tiles[consider])
-                        positions[consider] = (previousInfo[0] + 1, previousInfo[1], False, True, 90)
+                        positions[consider] = (previousInfo[0] + 1, previousInfo[1], False, False, 90)
             if dirFromPrevious[0] == 2:
                 if 0 in missingEdges and 1 in missingEdges:
                     if dirToPrevious[0] == 2:
@@ -450,9 +451,11 @@ for mutation in mutations:
     count, markedMonsters = checkMonsters(img, seaMonster)
     if count > 0:
         print(count)
+        printMap(markedMonsters)
+        print(mutation)
         onesRemaining = 0
-        for row in ogImage:
+        for row in img:
             for col in row:
                 if col == '1':
                     onesRemaining += 1
-        print(onesRemaining - 15 * (count + 1))
+        print(onesRemaining)
